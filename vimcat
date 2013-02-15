@@ -153,7 +153,7 @@ function! s:GroupToAnsi(groupnum)
     endif
   endif
 
-  let retv = "\<Esc>[22;24;25;27;28"
+  let retv = "\<Esc>[0"
 
   if bd
     let retv .= ";1"
@@ -165,8 +165,6 @@ function! s:GroupToAnsi(groupnum)
     let retv .= ";9" . (fg - 8)
   elseif exists('fg')                "use xterm256 codes
     let retv .= ";38;5;" . fg
-  else
-    let retv .= ";39"
   endif
 
   if exists('bg') && bg < 8
@@ -175,8 +173,6 @@ function! s:GroupToAnsi(groupnum)
     let retv .= ";10" . (bg - 8)
   elseif exists('bg')                "use xterm256 codes
     let retv .= ";48;5;" . bg
-  else
-    let retv .= ";49"
   endif
 
   let retv .= "m"
